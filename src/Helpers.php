@@ -156,8 +156,7 @@ class Helpers
     {
         $fDate = explode('/', $date);
 
-        if (count($fDate) < 3)
-        {
+        if (count($fDate) < 3) {
             $fDate = $date;
         } else {
             if (strlen($fDate[2])<4) {
@@ -174,7 +173,7 @@ class Helpers
         return $fDate;
     }
 
-    public static function regex_accents($value)
+    public static function regexAccents($value)
     {
         $value = mb_strtolower($value, 'UTF-8');
         // letras àáâãäåæ
@@ -205,121 +204,192 @@ class Helpers
         $value = str_replace(['c', 'ç'], 'X', $value);
         $value = str_replace('X', '[c|ç]', $value);
 
-    // letras ýÿ
+        // letras ýÿ
         $value = str_replace(['y', 'ý', 'ÿ'], 'X', $value);
         $value = str_replace('X', '[y|ý|ÿ]', $value);
 
         return $value;
     }
 
-    public static function to_int($data)
+    public static function toInt($data)
     {
-        if ( is_array($data) ) $data = count($data) ? $data[0] : '';
+        if (is_array($data)) {
+            $data = count($data) ? $data[0] : '';
+        }
+
         return (isset($data) && strlen(strval($data))) ? intval($data) : null;
     }
 
-    public static function to_float($data)
+    public static function toFloat($data)
     {
-        if ( is_array($data) ) $data = count($data) ? $data[0] : '';
+        if (is_array($data)) {
+            $data = count($data) ? $data[0] : '';
+        }
+
         return (isset($data) && strlen(strval($data))) ? floatval(str_replace(',', '.', $data)) : null;
     }
 
-    public static function to_time($d, $t)
+    public static function toTime($d, $t)
     {
-        if ( strpos($d, '00') === 0 ) {
+        if (strpos($d, '00') === 0) {
             $d = '19' . substr($d, 2);
         }
-        if ( strlen($t) == 5 ) $t = "$t:00";
+
+        if (strlen($t) == 5) {
+            $t = "$t:00";
+        }
 
         $time = strlen($d)*strlen($t) ? strtotime("$d $t") : null;
-        if ( $time > time() ) $time = time();
-        else if ( $time < time()-130*365*24*60*60 ) $time = time()-129*365*24*60*60;
+
+        if ($time > time()) {
+            $time = time();
+        } elseif ($time < time()-130*365*24*60*60) {
+            $time = time()-129*365*24*60*60;
+        }
 
         return $time * 1000;
     }
 
-    public static function to_array($r)
+    public static function toArray($r)
     {
         return isset($r) ? (array)$r : null;
     }
 
-    public static function to_array_int($arr)
+    public static function toArrayInt($arr)
     {
         $arr = to_array($arr);
-        if (!$arr) return null;
+
+        if (!$arr) {
+            return null;
+        }
+
         foreach ($arr as $key => $value) {
             $arr[$key] = intval($value);
         }
         return $arr;
     }
 
-    public static function to_data($d)
+    public static function toData($d)
     {
-        if ( is_array($d) ) $d = count($d) ? $d[0] : null;
+        if (is_array($d)) {
+            $d = count($d) ? $d[0] : null;
+        }
+
         $d = ((isset($d) && strlen((string) $d)) || $d === false) ? $d : null;
+
         $d = ($d === 'true' ? true : $d);
+
         $d = ($d === 'false' ? false : $d);
+
         return $d;
     }
 
-    public static function to_bool($d)
+    public static function toBool($d)
     {
-        if ( $d === 'true' || $d === true ) return true;
-        if ( $d === 'false' || $d === false ) return false;
+        if ($d === 'true' || $d === true) {
+            return true;
+        }
+
+        if ($d === 'false' || $d === false) {
+            return false;
+        }
+
         return null;
     }
 
-    public static function to_bool_not_null($d)
+    public static function toBoolNotNull($d)
     {
-        if ( $d === 'true' || $d === true ) return true;
+        if ($d === 'true' || $d === true) {
+            return true;
+        }
+
         return false;
     }
 
-    public static function remove_accents($name) {
-        return strtr(utf8_decode($name), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
+    public static function removeAccents($name)
+    {
+        return strtr(
+            utf8_decode($name),
+            utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'),
+            'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY'
+        );
     }
 
-    public static function compare_version($v1, $signal, $v2 = '')
+    public static function compareVersion($v1, $signal, $v2 = '')
     {
-        if ( empty($v2) ) {
+        if (empty($v2)) {
             $v2 = $signal;
             $signal = '=';
         }
+
         $v1 = explode('.', $v1);
+
         $v2 = explode('.', $v2);
+
         for ($i=0; $i < 3; $i++) {
             $n1 = (int) preg_replace('/\D/', '', isset($v1[$i]) && !empty($v1[$i]) ? $v1[$i] : 0);
             $n2 = (int) preg_replace('/\D/', '', isset($v2[$i]) && !empty($v2[$i]) ? $v2[$i] : 0);
+
             switch ($signal) {
                 case '=':
                 case '==':
-                    if ( $n1 != $n2 ) return false;
+                    if ($n1 != $n2) {
+                        return false;
+                    }
+
                     break;
                 case '<':
-                    if ( $n1 < $n2 ) return true;
-                    if ( $i < 2 && $n1 == $n2 ) continue;
-                    else if ( $n1 >= $n2 ) return false;
+                    if ($n1 < $n2) {
+                        return true;
+                    }
+
+                    if ($i < 2 && $n1 == $n2) {
+                        continue;
+                    } elseif ($n1 >= $n2) {
+                        return false;
+                    }
+
                     break;
                 case '>':
-                    if ( $n1 > $n2 ) return true;
-                    if ( $i < 2 && $n1 == $n2 ) continue;
-                    else if ( $n1 <= $n2 ) return false;
+                    if ($n1 > $n2) {
+                        return true;
+                    }
+
+                    if ($i < 2 && $n1 == $n2) {
+                        continue;
+                    } elseif ($n1 <= $n2) {
+                        return false;
+                    }
+
                     break;
             }
         }
         return true;
     }
 
-    public static function month_pt($value)
+    public static function monthPt($value)
     {
         $months = [
-            1 => 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+            1 => 'Janeiro',
+            2 => 'Fevereiro',
+            3 => 'Março',
+            4 => 'Abril',
+            5 => 'Maio',
+            6 => 'Junho',
+            7 => 'Julho',
+            8 => 'Agosto',
+            9 => 'Setembro',
+            10 => 'Outubro',
+            11 => 'Novembro',
+            12 => 'Dezembro',
         ];
+
         $value = (int) $value;
+
         return 1 <= $value && $value <= 12 ? $months[$value] : '';
     }
 
-    public static function remove_crass_letters($str)
+    public static function removeCrassLetters($str)
     {
         $search = ['à', 'è', 'ì', 'ò', 'ù', 'À', 'È', 'Ì', 'Ò', 'Ù'];
         $replace = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
@@ -328,21 +398,36 @@ class Helpers
 
     public static function validateCpf($cpf)
     {
-        $invalid_cpf_arr = ['00000000000', '11111111111', '22222222222', '33333333333', '44444444444', '55555555555', '66666666666', '77777777777', '88888888888', '99999999999'];
+        $invalid_cpf_arr = [
+            '00000000000',
+            '11111111111',
+            '22222222222',
+            '33333333333',
+            '44444444444',
+            '55555555555',
+            '66666666666',
+            '77777777777',
+            '88888888888',
+            '99999999999'
+        ];
 
         $cpf = preg_replace('/\D/', '', $cpf);
 
-        if (strlen($cpf) != 11 || in_array($cpf, $invalid_cpf_arr)) return false;
-        else {
+        if (strlen($cpf) != 11 || in_array($cpf, $invalid_cpf_arr)) {
+            return false;
+        } else {
             for ($t = 9; $t < 11; $t++) {
                 for ($d = 0, $c = 0; $c < $t; $c++) {
                     $d += $cpf[$c] * (($t + 1) - $c);
                 }
+
                 $d = ((10 * $d) % 11) % 10;
+
                 if ($cpf[$c] != $d) {
                     return false;
                 }
             }
+
             return true;
         }
     }
@@ -358,6 +443,7 @@ class Helpers
             6 => "Sábado",
             7 => "Domingo",
         ];
+
         return $days[$week_day_number];
     }
 
@@ -371,15 +457,21 @@ class Helpers
     public static function getNFirstWords($str, $separator, $n)
     {
         $statement = explode($separator, $str);
+
         $out_str = '';
-        if (count($statement) == 1)
+
+        if (count($statement) == 1) {
             return $statement[0];
-        for ($i = 0; $i < $n; $i++) {
-            if ($i == $n - 1)
-                $out_str .= $statement[$i];
-            else
-                $out_str .= $statement[$i] . ' ';
         }
+
+        for ($i = 0; $i < $n; $i++) {
+            if ($i == $n - 1) {
+                $out_str .= $statement[$i];
+            } else {
+                $out_str .= $statement[$i] . ' ';
+            }
+        }
+
         return $out_str;
     }
 }
