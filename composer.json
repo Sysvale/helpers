@@ -1,0 +1,21 @@
+{
+    "name": "sysvale/helpers",
+    "description": "Helper function in PHP",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "7.5.x-dev"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sysvale Softgroup",
+            "email": "dev@sysvale.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Sysvale\\": "src/"
+        }
+    }
+}
