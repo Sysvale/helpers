@@ -55,3 +55,6 @@ $maskedBank Helpers::maskBank($bankNumber)
 
 // $maskedBank will be 1234-5
 ```
+
+## Contributing Guidelines
+If you are interested in contributing, please read and abide by the [contributing guidelines](CONTRIBUTING.md).
