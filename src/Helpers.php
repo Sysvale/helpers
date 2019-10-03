@@ -4,6 +4,10 @@ namespace Sysvale;
 
 class Helpers
 {
+    /**
+     * @param string $value
+     * @return string
+     */
     public static function maskBank($value)
     {
         if (strlen($value) <= 1) {
@@ -16,7 +20,10 @@ class Helpers
         return $value;
     }
 
-
+    /**
+     * @param string $value
+     * @return string|null
+     */
     public static function maskCpf($value)
     {
         $value = preg_replace('/\D/', '', $value);
@@ -26,12 +33,21 @@ class Helpers
         return vsprintf("%s%s%s.%s%s%s.%s%s%s-%s%s", str_split($value));
     }
 
+    /**
+     * @param string  $value
+     * @return string|string[]|null
+     */
     public static function unMaskCpf($value)
     {
         $value = preg_replace('/\D/', '', $value);
         return $value;
     }
 
+    /**
+     * @param string  $value
+     * @param bool $field
+     * @return string|null
+     */
     public static function maskPhone($value, $field = false)
     {
         $value = preg_replace('/\D/', '', $value);
@@ -50,11 +66,19 @@ class Helpers
         return null;
     }
 
+    /**
+     * @param float $value
+     * @return string
+     */
     public static function maskMoney($value)
     {
         return number_format($value, 2, ',', '.');
     }
 
+    /**
+     * @param string $value
+     * @return string|null
+     */
     public static function maskCep($value)
     {
         $value = preg_replace('/\D/', '', $value);
@@ -66,6 +90,10 @@ class Helpers
         return null;
     }
 
+    /**
+     * @param string $value
+     * @return string|null
+     */
     public static function maskCnpj($value)
     {
         $value = preg_replace('/\D/', '', $value);
@@ -77,11 +105,26 @@ class Helpers
         return null;
     }
 
+    /**
+     * @param string $str
+     * @return string|string[]|null
+     */
     public static function trimpp($str)
     {
         return preg_replace('/\s+/', ' ', trim($str));
     }
 
+    /**
+     * Exceptions in lower case are words you don't want converted
+     * Exceptions all in upper case are any words you don't want converted to title case
+     * but should be converted to upper case, e.g.:
+     * king henry viii or king henry Viii should be King Henry VIII
+     *
+     * @param string $string
+     * @param string[] $delimiters
+     * @param string[] $exceptions
+     * @return string
+     */
     public static function titleCase(
         $string,
         $delimiters = [' ', '-', '.', '\'', 'O\'', 'Mc'],
@@ -109,12 +152,6 @@ class Helpers
             'VI',
         ]
     ) {
-        /*
-        * Exceptions in lower case are words you don't want converted
-        * Exceptions all in upper case are any words you don't want converted to title case
-        * but should be converted to upper case, e.g.:
-        * king henry viii or king henry Viii should be King Henry VIII
-        */
         $string = mb_convert_case($string, MB_CASE_TITLE, "UTF-8");
         foreach ($delimiters as $dlnr => $delimiter) {
             $words = explode($delimiter, $string);
@@ -142,16 +179,29 @@ class Helpers
         return $string;
     }
 
+    /**
+     * @param string $str
+     * @return string
+     */
     public static function firstUpper($str)
     {
         return titleCase($str);
     }
 
+    /**
+     * @param string $url
+     * @return string string
+     */
     public static function urlNoCache($url)
     {
         return "$url?_=". time();
     }
 
+    /**
+     * @param string $date
+     * @return array|string
+     * @throws \Exception
+     */
     public static function ptDate2IsoDate($date)
     {
         $fDate = explode('/', $date);
@@ -173,6 +223,10 @@ class Helpers
         return $fDate;
     }
 
+    /**
+     * @param string $value
+     * @return mixed|string
+     */
     public static function regexAccents($value)
     {
         $value = mb_strtolower($value, 'UTF-8');
@@ -211,6 +265,10 @@ class Helpers
         return $value;
     }
 
+    /**
+     * @param string|string[] $data
+     * @return int|null
+     */
     public static function toInt($data)
     {
         if (is_array($data)) {
@@ -220,6 +278,10 @@ class Helpers
         return (isset($data) && strlen(strval($data))) ? intval($data) : null;
     }
 
+    /**
+     * @param string|string[] $data
+     * @return float|null
+     */
     public static function toFloat($data)
     {
         if (is_array($data)) {
@@ -229,6 +291,11 @@ class Helpers
         return (isset($data) && strlen(strval($data))) ? floatval(str_replace(',', '.', $data)) : null;
     }
 
+    /**
+     * @param string $d
+     * @param string $t
+     * @return int
+     */
     public static function toTime($d, $t)
     {
         if (strpos($d, '00') === 0) {
@@ -250,11 +317,19 @@ class Helpers
         return $time * 1000;
     }
 
+    /**
+     * @param mixed $r
+     * @return array|null
+     */
     public static function toArray($r)
     {
         return isset($r) ? (array)$r : null;
     }
 
+    /**
+     * @param mixed[] $arr
+     * @return int[]|null
+     */
     public static function toArrayInt($arr)
     {
         $arr = to_array($arr);
@@ -269,6 +344,10 @@ class Helpers
         return $arr;
     }
 
+    /**
+     * @param array|string|bool $d
+     * @return bool|mixed|null
+     */
     public static function toData($d)
     {
         if (is_array($d)) {
@@ -284,6 +363,10 @@ class Helpers
         return $d;
     }
 
+    /**
+     * @param string|bool $d
+     * @return bool|null
+     */
     public static function toBool($d)
     {
         if ($d === 'true' || $d === true) {
@@ -297,6 +380,10 @@ class Helpers
         return null;
     }
 
+    /**
+     * @param string|bool $d
+     * @return bool
+     */
     public static function toBoolNotNull($d)
     {
         if ($d === 'true' || $d === true) {
@@ -306,6 +393,10 @@ class Helpers
         return false;
     }
 
+    /**
+     * @param string $name
+     * @return string
+     */
     public static function removeAccents($name)
     {
         return strtr(
@@ -315,6 +406,12 @@ class Helpers
         );
     }
 
+    /**
+     * @param string $v1
+     * @param string $signal
+     * @param string $v2
+     * @return bool
+     */
     public static function compareVersion($v1, $signal, $v2 = '')
     {
         if (empty($v2)) {
@@ -367,6 +464,10 @@ class Helpers
         return true;
     }
 
+    /**
+     * @param int $value
+     * @return string
+     */
     public static function monthPt($value)
     {
         $months = [
@@ -389,6 +490,10 @@ class Helpers
         return 1 <= $value && $value <= 12 ? $months[$value] : '';
     }
 
+    /**
+     * @param string $str
+     * @return string
+     */
     public static function removeCrassLetters($str)
     {
         $search = ['à', 'è', 'ì', 'ò', 'ù', 'À', 'È', 'Ì', 'Ò', 'Ù'];
@@ -396,6 +501,10 @@ class Helpers
         return str_replace($search, $replace, $str);
     }
 
+    /**
+     * @param string $cpf
+     * @return bool
+     */
     public static function validateCpf($cpf)
     {
         $invalid_cpf_arr = [
@@ -432,6 +541,10 @@ class Helpers
         }
     }
 
+    /**
+     * @param int $week_day_number
+     * @return string
+     */
     public static function weekDay($week_day_number)
     {
         $days = [
@@ -447,6 +560,9 @@ class Helpers
         return $days[$week_day_number];
     }
 
+    /**
+     * @return mixed
+     */
     public static function city()
     {
         $database_id = \Crypt::decrypt(session('database_id'));
@@ -454,6 +570,12 @@ class Helpers
         return \App\Database::find($database_id)->city;
     }
 
+    /**
+     * @param string $str
+     * @param string $separator
+     * @param int $n
+     * @return string
+     */
     public static function getNFirstWords($str, $separator, $n)
     {
         $statement = explode($separator, $str);
