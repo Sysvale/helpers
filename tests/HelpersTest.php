@@ -16,4 +16,13 @@ class HelpersTest extends TestCase
 
         $this->assertEquals($expected, $actual);
     }
+
+    public function testeMaskCnpj()
+    {
+        $expected = '99.999.999/9999-99';
+
+        $actual = Helpers::maskCnpj('99999999999999');
+
+        $this->assertEquals($expected, $actual);
+    }
 }
