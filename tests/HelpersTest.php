@@ -17,6 +17,13 @@ class HelpersTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
+    public function testTrimpp()
+    {
+        $expected = 'word test';
+        $actual = Helpers::trimpp(' word  test ');
+        $this->assertEquals($expected, $actual);
+    }
+    
     public function testMaskMoney()
     {
         $expected1 = '0,55';
