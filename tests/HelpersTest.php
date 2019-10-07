@@ -56,4 +56,19 @@ class HelpersTest extends TestCase
         $this->assertEquals($expected2, $actual2);
         $this->assertEquals($expected3, $actual3);
     }
+
+    public function testTitleCase()
+    {
+        $expected1 = 'Jon Doe';
+        $expected2 = 'Jon de Doe';
+        $expected3 = 'King Henry VIII';
+        
+        $actual1 = Helpers::titleCase('jon doe');
+        $actual2 = Helpers::titleCase('jon de doe');
+        $actual3 = Helpers::titleCase('king henry viii', [' '], ['VIII']);
+
+        $this->assertEquals($expected1, $actual1);        
+        $this->assertEquals($expected2, $actual2);        
+        $this->assertEquals($expected3, $actual3);
+    }
 }
