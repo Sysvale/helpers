@@ -17,6 +17,13 @@ class HelpersTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
+    public function testTrimpp()
+    {
+        $expected = 'word test';
+        $actual = Helpers::trimpp(' word  test ');
+        $this->assertEquals($expected, $actual);
+    }
+    
     public function testMaskMoney()
     {
         $expected1 = '0,55';
@@ -69,5 +76,20 @@ class HelpersTest extends TestCase
         $this->assertFalse($result5);
         $this->assertFalse($result6);
         $this->assertFalse($result7);
+    }
+  
+    public function testTitleCase()
+    {
+        $expected1 = 'Jon Doe';
+        $expected2 = 'Jon de Doe';
+        $expected3 = 'King Henry VIII';
+        
+        $actual1 = Helpers::titleCase('jon doe');
+        $actual2 = Helpers::titleCase('jon de doe');
+        $actual3 = Helpers::titleCase('king henry viii', [' '], ['VIII']);
+
+        $this->assertEquals($expected1, $actual1);        
+        $this->assertEquals($expected2, $actual2);        
+        $this->assertEquals($expected3, $actual3);
     }
 }
