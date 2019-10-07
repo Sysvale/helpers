@@ -49,4 +49,16 @@ class HelpersTest extends TestCase
         $this->assertEquals($expected2, $actual2);
         $this->assertEquals($expected3, $actual3);
     }
+
+    public function testMaskPhone()
+    {
+        $expected = '(44) 99236-7809';
+        $expected2 = '(44) 9236-7809';
+
+        $actual = Helpers::maskPhone("44992367809");
+        $actual2 = Helpers::maskPhone("4492367809");
+
+        $this->assertEquals($expected, $actual);
+        $this->assertEquals($expected2, $actual2);
+    }
 }
