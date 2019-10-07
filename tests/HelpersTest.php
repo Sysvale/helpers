@@ -17,6 +17,15 @@ class HelpersTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
+    public function testMaskCep()
+    {
+        $expected = '99999-999';
+
+        $actual = Helpers::maskCep('99999999');
+
+        $this->assertEquals($expected, $actual);
+    }
+
     public function testTrimpp()
     {
         $expected = 'word test';
