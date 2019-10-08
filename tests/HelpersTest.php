@@ -150,4 +150,11 @@ class HelpersTest extends TestCase
         $this->assertEquals("Novembro", Helpers::monthPt(11));
         $this->assertEquals("Dezembro", Helpers::monthPt(12));
     }
+    
+    public function testUnMaskCpf()
+    {
+        $actual = "77298408631";
+        $this->assertEquals($actual, Helpers::unMaskCpf("772.984.086-31"));
+    }
 }
+
