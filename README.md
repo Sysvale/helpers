@@ -1,6 +1,6 @@
 # Sysvale Helpers
 
-[![Build Status](https://travis-ci.org/Sysvale/helpers.svg?branch=master)](https://travis-ci.org/Sysvale/helpers)
+[![Build Status](https://travis-ci.com/Sysvale/helpers.svg?branch=master)](https://travis-ci.com/Sysvale/helpers)
 
 Php functions to make you work faster.
 
