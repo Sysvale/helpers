@@ -123,4 +123,31 @@ class HelpersTest extends TestCase
         $this->assertEquals($expected2, $actual2);        
         $this->assertEquals($expected3, $actual3);
     }
+
+    public function testWeekDay()
+    {
+        $this->assertEquals("Segunda-feira", Helpers::weekDay(1));
+        $this->assertEquals("Terça-feira", Helpers::weekDay(2));
+        $this->assertEquals("Quarta-feira", Helpers::weekDay(3));
+        $this->assertEquals("Quinta-feira", Helpers::weekDay(4));
+        $this->assertEquals("Sexta-feira", Helpers::weekDay(5));
+        $this->assertEquals("Sábado", Helpers::weekDay(6));
+        $this->assertEquals("Domingo", Helpers::weekDay(7));
+    }
+
+    public function testMonthPt()
+    {
+        $this->assertEquals("Janeiro", Helpers::monthPt(1));
+        $this->assertEquals("Fevereiro", Helpers::monthPt(2));
+        $this->assertEquals("Março", Helpers::monthPt(3));
+        $this->assertEquals("Abril", Helpers::monthPt(4));
+        $this->assertEquals("Maio", Helpers::monthPt(5));
+        $this->assertEquals("Junho", Helpers::monthPt(6));
+        $this->assertEquals("Julho", Helpers::monthPt(7));
+        $this->assertEquals("Agosto", Helpers::monthPt(8));
+        $this->assertEquals("Setembro", Helpers::monthPt(9));
+        $this->assertEquals("Outubro", Helpers::monthPt(10));
+        $this->assertEquals("Novembro", Helpers::monthPt(11));
+        $this->assertEquals("Dezembro", Helpers::monthPt(12));
+    }
 }
