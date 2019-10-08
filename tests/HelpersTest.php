@@ -123,4 +123,15 @@ class HelpersTest extends TestCase
         $this->assertEquals($expected2, $actual2);        
         $this->assertEquals($expected3, $actual3);
     }
+
+    public function testWeekDay()
+    {
+        $this->assertEquals("Segunda-feira", Helpers::weekDay(1));
+        $this->assertEquals("Terça-feira", Helpers::weekDay(2));
+        $this->assertEquals("Quarta-feira", Helpers::weekDay(3));
+        $this->assertEquals("Quinta-feira", Helpers::weekDay(4));
+        $this->assertEquals("Sexta-feira", Helpers::weekDay(5));
+        $this->assertEquals("Sábado", Helpers::weekDay(6));
+        $this->assertEquals("Domingo", Helpers::weekDay(7));
+    }
 }
