@@ -1,5 +1,7 @@
 # Sysvale Helpers
 
+[![Build Status](https://travis-ci.org/Sysvale/helpers.svg?branch=master)](https://travis-ci.org/Sysvale/helpers)
+
 Php functions to make you work faster.
 
 ## Instalation
