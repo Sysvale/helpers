@@ -21,10 +21,10 @@ composer require sysvale/helpers
  * maskMoney
  * maskCep
  * maskCnpj
- * trimpp
+ * [trimpp](#trimpp)
  * titleCase
  * firstUpper
- * urlNoCache
+ * [urlNoCache](#urlNoCache)
  * ptDate2IsoDate
  * regexAccents
  * toInt
@@ -56,6 +56,28 @@ $bankNumber = 12345;
 $maskedBank = Helpers::maskBank($bankNumber);
 
 // $maskedBank will be 1234-5
+```
+
+### trimpp
+```php
+use Sysvale/Helpers;
+
+$text = " Text \t \n "; //String with spaces and special caracter;
+
+$text = Helpers::trimpp($text);
+
+// $text will be Text
+```
+
+### urlNoCache
+```php
+use Sysvale/Helpers;
+
+$url = 'http://url.com.br';
+
+$url = Helpers::urlNoCache($url);
+
+// $url will be http://url.com.br?1570588480
 ```
 
 ## Contributing Guidelines
