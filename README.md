@@ -53,7 +53,7 @@ use Sysvale/Helpers;
 
 $bankNumber = 12345;
 
-$maskedBank Helpers::maskBank($bankNumber)
+$maskedBank = Helpers::maskBank($bankNumber);
 
 // $maskedBank will be 1234-5
 ```
