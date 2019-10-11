@@ -596,4 +596,28 @@ class Helpers
 
         return $out_str;
     }
+
+    public static function speakMoney($value)
+    {
+        $speaker = new \Speak\Number();
+
+        $integer_part = (int) $value;
+        $decimal_part = (int) ($value * 100 - $integer_part * 100);
+
+        $integer_to_word = $speaker->speak($integer_part);
+        $decimal_to_word = $speaker->speak($decimal_part);
+
+        $integer_plural = $integer_part == 1 ? 'real' : 'reais';
+        $decimal_plural = $decimal_part == 1 ? 'centavo' : 'centavos';
+
+        if ($integer_part > 0 && $decimal_part > 0) {
+            return "$integer_to_word $integer_plural e $decimal_to_word $decimal_plural";
+        }
+
+        if ($integer_part == 0 && $decimal_part > 0) {
+            return "$decimal_to_word $decimal_plural";
+        }
+
+        return "$integer_to_word $integer_plural";
+    }
 }
