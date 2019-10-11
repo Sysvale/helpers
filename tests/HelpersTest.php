@@ -156,5 +156,20 @@ class HelpersTest extends TestCase
         $actual = "77298408631";
         $this->assertEquals($actual, Helpers::unMaskCpf("772.984.086-31"));
     }
+
+    public function testSpeakMoney()
+    {
+        $test_case_1 = 700.45;
+        $test_case_2 = '1500000.54';
+        $test_case_3 = 1753.63;
+
+        $speak_case_1 = Helpers::speakMoney($test_case_1);
+        $speak_case_2 = Helpers::speakMoney($test_case_2);
+        $speak_case_3 = Helpers::speakMoney($test_case_3);
+
+        $this->assertEquals($speak_case_1 ,'setecentos reais e quarenta e cinco centavos');
+        $this->assertEquals($speak_case_2 ,'um milhão e quinhentos mil reais e cinquenta e quatro centavos');
+        $this->assertEquals($speak_case_3 ,'um mil setecentos e cinquenta e três reais e sessenta e três centavos');
+    }
 }
 
