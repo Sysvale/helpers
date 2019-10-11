@@ -9,7 +9,8 @@
         "php": "7.2.*"
     },
     "require": {
-        "php": "7.2.*"
+        "php": "7.2.*",
+        "malukenho/speaknumber": "dev-master"
     },
     "license": "MIT",
     "authors": [
