@@ -43,6 +43,7 @@ composer require sysvale/helpers
  * weekDay
  * city
  * getNFirstWords
+ * [speakMoney](#speakMoney)
 
 
 ## Usage Examples
@@ -78,6 +79,17 @@ $url = 'http://url.com.br';
 $url = Helpers::urlNoCache($url);
 
 // $url will be http://url.com.br?1570588480
+```
+
+### speakMoney
+```php
+use Sysvale/Helpers;
+
+$number = 1500.54; // the number must be a string or integer dot separeted
+
+$speaked_number = Helpers::speakMoney($number);
+
+// $speaked_number will be 'um mil e quinhentos reais e cinquenta e quatro centavos'
 ```
 
 ## Contributing Guidelines
