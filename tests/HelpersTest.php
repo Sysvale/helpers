@@ -41,7 +41,7 @@ class HelpersTest extends TestCase
         $actual = Helpers::trimpp(' word  test ');
         $this->assertEquals($expected, $actual);
     }
-    
+
     public function testMaskMoney()
     {
         $expected1 = '0,55';
@@ -108,19 +108,19 @@ class HelpersTest extends TestCase
         $this->assertFalse($result6);
         $this->assertFalse($result7);
     }
-  
+
     public function testTitleCase()
     {
         $expected1 = 'Jon Doe';
         $expected2 = 'Jon de Doe';
         $expected3 = 'King Henry VIII';
-        
+
         $actual1 = Helpers::titleCase('jon doe');
         $actual2 = Helpers::titleCase('jon de doe');
         $actual3 = Helpers::titleCase('king henry viii', [' '], ['VIII']);
 
-        $this->assertEquals($expected1, $actual1);        
-        $this->assertEquals($expected2, $actual2);        
+        $this->assertEquals($expected1, $actual1);
+        $this->assertEquals($expected2, $actual2);
         $this->assertEquals($expected3, $actual3);
     }
 
@@ -150,11 +150,19 @@ class HelpersTest extends TestCase
         $this->assertEquals("Novembro", Helpers::monthPt(11));
         $this->assertEquals("Dezembro", Helpers::monthPt(12));
     }
-    
+
     public function testUnMaskCpf()
     {
         $actual = "77298408631";
         $this->assertEquals($actual, Helpers::unMaskCpf("772.984.086-31"));
     }
-}
 
+    public function testToInt()
+    {
+        $number = Helpers::toInt('123');
+
+        $this->assertEquals($number, 123);
+
+        $this->assertIsInt($number);
+    }
+}
