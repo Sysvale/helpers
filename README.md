@@ -4,6 +4,8 @@
 
 Php functions to make you work faster.
 
+Sysvale Helpers requires PHP >= 7.2 and  php-mbstring extension
+
 ## Instalation
 
 With composer:
