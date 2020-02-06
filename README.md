@@ -38,7 +38,11 @@ composer require sysvale/helpers
  * monthPt
  * removeCrassLetters
  * validateCpf
+ * validateCNPJ
+ * validatePhone
  * weekDay
+ * validateResidentialPhone
+ * validateMobilePhone
  * city
  * getNFirstWords
 
