@@ -39,7 +39,6 @@ composer require sysvale/helpers
  * removeCrassLetters
  * validateCpf
  * weekDay
- * city
  * getNFirstWords
 
 
