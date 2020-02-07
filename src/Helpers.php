@@ -633,16 +633,6 @@ class Helpers
     }
 
     /**
-     * @return mixed
-     */
-    public static function city()
-    {
-        $database_id = \Crypt::decrypt(session('database_id'));
-
-        return \App\Database::find($database_id)->city;
-    }
-
-    /**
      * @param string $str
      * @param string $separator
      * @param int $n

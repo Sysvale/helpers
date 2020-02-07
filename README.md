@@ -47,7 +47,6 @@ composer require sysvale/helpers
  * weekDay
  * validateResidentialPhone
  * validateMobilePhone
- * city
  * getNFirstWords
 
 
