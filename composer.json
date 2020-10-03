@@ -1,16 +1,16 @@
 {
-    "version": "1.0",
+    "version": "1.1",
     "name": "sysvale/helpers",
     "description": "Helper function in PHP",
     "type": "library",
     "require-dev": {
-        "squizlabs/php_codesniffer": "3.*",
-        "phpunit/phpunit": "^8.4@dev",
-        "php": "7.*",
-        "fzaninotto/faker": "^1.9@dev"
+        "squizlabs/php_codesniffer": "^3.5.",
+        "phpunit/phpunit": "^8.4",
+        "php": ">=7.2",
+        "fzaninotto/faker": "^1.9"
     },
     "require": {
-        "php": "7.*"
+        "php": ">=7.2"
     },
     "license": "MIT",
     "authors": [
