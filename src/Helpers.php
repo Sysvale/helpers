@@ -1,6 +1,7 @@
 <?php
 
 namespace Sysvale;
+use Sysvale\Helpers\Mask;
 
 class Helpers
 {
@@ -10,14 +11,7 @@ class Helpers
      */
     public static function maskBank($value)
     {
-        if (strlen($value) <= 1) {
-            return $value;
-        }
-
-        $last_digit = $value[strlen($value)-1];
-        $value[strlen($value)-1] = '-';
-        $value .= $last_digit;
-        return $value;
+        return Mask::bank($value);
     }
 
     /**
@@ -26,11 +20,7 @@ class Helpers
      */
     public static function maskCpf($value)
     {
-        $value = preg_replace('/\D/', '', $value);
-        if (strlen($value) < 11) {
-            return null;
-        }
-        return vsprintf("%s%s%s.%s%s%s.%s%s%s-%s%s", str_split($value));
+        return Mask::cpf($value);
     }
 
     /**
@@ -39,8 +29,7 @@ class Helpers
      */
     public static function unMaskCpf($value)
     {
-        $value = preg_replace('/\D/', '', $value);
-        return $value;
+        return Mask::unMaskCpf($value);
     }
 
     /**
@@ -50,20 +39,7 @@ class Helpers
      */
     public static function maskPhone($value, $field = false)
     {
-        $value = preg_replace('/\D/', '', $value);
-        if (strlen($value) == 10) {
-            return vsprintf("(%s%s) %s%s%s%s-%s%s%s%s", str_split($value));
-        }
-
-        if (strlen($value) == 11) {
-            return vsprintf("(%s%s) %s%s%s%s%s-%s%s%s%s", str_split($value));
-        }
-
-        if ($field) {
-            return "(___) ______-______";
-        }
-
-        return null;
+        return Mask::phone($value, $field);
     }
 
     /**
@@ -72,7 +48,7 @@ class Helpers
      */
     public static function maskMoney($value)
     {
-        return number_format($value, 2, ',', '.');
+        return Mask::money($value);
     }
 
     /**
@@ -81,13 +57,7 @@ class Helpers
      */
     public static function maskCep($value)
     {
-        $value = preg_replace('/\D/', '', $value);
-
-        if (strlen($value) == 8) {
-            return vsprintf("%s%s%s%s%s-%s%s%s", str_split($value));
-        }
-
-        return null;
+        return Mask::cep($value);
     }
 
     /**
@@ -96,13 +66,7 @@ class Helpers
      */
     public static function maskCnpj($value)
     {
-        $value = preg_replace('/\D/', '', $value);
-
-        if (strlen($value) == 14) {
-            return vsprintf("%s%s.%s%s%s.%s%s%s/%s%s%s%s-%s%s", str_split($value));
-        }
-
-        return null;
+        return Mask::cnpj($value);
     }
 
     /**
@@ -441,7 +405,7 @@ class Helpers
                     }
 
                     if ($i < 2 && $n1 == $n2) {
-                        continue;
+                    break;
                     } elseif ($n1 >= $n2) {
                         return false;
                     }
