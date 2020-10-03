@@ -441,7 +441,7 @@ class Helpers
                     }
 
                     if ($i < 2 && $n1 == $n2) {
-                        continue;
+                        break;
                     } elseif ($n1 >= $n2) {
                         return false;
                     }
@@ -453,7 +453,7 @@ class Helpers
                     }
 
                     if ($i < 2 && $n1 == $n2) {
-                        continue;
+                        break;
                     } elseif ($n1 <= $n2) {
                         return false;
                     }
