@@ -405,7 +405,7 @@ class Helpers
                     }
 
                     if ($i < 2 && $n1 == $n2) {
-                    break;
+                        break;
                     } elseif ($n1 >= $n2) {
                         return false;
                     }
