@@ -165,4 +165,13 @@ class HelpersTest extends TestCase
 
         $this->assertIsInt($number);
     }
+
+    public function testMaskCnpj()
+    {
+        $wrong = 'aaaaaaaaaaaaa';
+        $right = '11222333444455';
+
+        $this->assertEquals(Helpers::maskCnpj($right), '11.222.333/4444-55');
+        $this->assertNull(Helpers::maskCnpj($wrong));
+    }
 }
