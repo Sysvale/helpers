@@ -174,4 +174,19 @@ class HelpersTest extends TestCase
         $this->assertEquals(Helpers::maskCnpj($right), '11.222.333/4444-55');
         $this->assertNull(Helpers::maskCnpj($wrong));
     }
+
+    public function testPtDate2IsoDate()
+    {
+        $date = '01/02/2003';
+        $other_date = '01/02/03';
+        $incomplete_date = '01/02';
+        $another_incomplete_date = '01/2002';
+        $wrong_input = 'string';
+
+        $this->assertEquals(Helpers::ptDate2IsoDate($date), '2003-02-01');
+        $this->assertEquals(Helpers::ptDate2IsoDate($other_date), '2003-02-01');
+        $this->assertNull(Helpers::ptDate2IsoDate($incomplete_date));
+        $this->assertNull(Helpers::ptDate2IsoDate($another_incomplete_date));
+        $this->assertNull(Helpers::ptDate2IsoDate($wrong_input));
+    }
 }
