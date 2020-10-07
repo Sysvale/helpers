@@ -171,7 +171,7 @@ class Helpers
         $fDate = explode('/', $date);
 
         if (count($fDate) < 3) {
-            $fDate = $date;
+            return null;
         } else {
             if (strlen($fDate[2])<4) {
                 if (intval($fDate[2])>30) {
