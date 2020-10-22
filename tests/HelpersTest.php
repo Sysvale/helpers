@@ -175,6 +175,15 @@ class HelpersTest extends TestCase
         $this->assertNull(Helpers::maskCnpj($wrong));
     }
 
+    public function testRemoveAccents()
+    {
+        $original = 'Tést Wíth àáccents';
+        $expected = 'Test With aaccents';
+
+        $this->assertEquals(Helpers::removeAccents($original), $expected);
+        $this->assertNotEquals(Helpers::removeAccents($original), $original);
+    }
+
     public function testPtDate2IsoDate()
     {
         $date = '01/02/2003';
