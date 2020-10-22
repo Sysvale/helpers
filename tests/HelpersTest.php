@@ -174,4 +174,13 @@ class HelpersTest extends TestCase
         $this->assertEquals(Helpers::maskCnpj($right), '11.222.333/4444-55');
         $this->assertNull(Helpers::maskCnpj($wrong));
     }
+
+    public function testRemoveAccents()
+    {
+        $original = 'Tést Wíth àáccents';
+        $expected = 'Test With aaccents';
+
+        $this->assertEquals(Helpers::removeAccents($original), $expected);
+        $this->assertNotEquals(Helpers::removeAccents($original), $original);
+    }
 }
