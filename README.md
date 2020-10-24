@@ -85,7 +85,7 @@ $url = Helpers::urlNoCache($url);
 // $url will be http://url.com.br?1570588480
 ```
 
-## Classe Validate
+## Validate class
 
 The validation methods can be accessed directly in the `Validate` class.
 To use the class import as in the example:
