@@ -2,11 +2,11 @@
 
 [![Build Status](https://travis-ci.com/Sysvale/helpers.svg?branch=master)](https://travis-ci.com/Sysvale/helpers)
 
-Php functions to make you work faster.
+PHP functions to make you work faster.
 
 Sysvale Helpers requires PHP >= 7.2 and  php-mbstring extension
 
-## Instalation
+## Installation
 
 With composer:
 
@@ -14,7 +14,7 @@ With composer:
 composer require sysvale/helpers
 ```
 
-## Methods da classe Helpers.php
+## Helpers class methods
 
  * [maskBank](#maskBank)
  * maskCpf
@@ -87,14 +87,14 @@ $url = Helpers::urlNoCache($url);
 
 ## Classe Validate
 
-Os métodos de validação podem ser acessados diretamente na classe `Validate`.
-Para usar a classe importe como no exemplo:
+The validation methods can be accessed directly in the `Validate` class.
+To use the class import as in the example:
 
 ```php
   use Sysvale\Helpers\Validate;
 ```
 
-### Métodos da classe Validate
+### Validate class methods
 
 * [isValidCpf](#isValidCpf)
 * [isValidCnpj](#isValidCnpj)
@@ -102,7 +102,7 @@ Para usar a classe importe como no exemplo:
 * [isValidResidentialPhone](#isValidResidentialPhone)
 * [isValidMobilePhone](#isValidMobilePhone)
 
-### Exemplos de uso
+### Use exemples
 
 #### isValidCpf
 
