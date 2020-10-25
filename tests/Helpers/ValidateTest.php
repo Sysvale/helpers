@@ -99,7 +99,6 @@ class ValidateTest extends TestCase
 
     public function phonesResidencialProvider()
     {
-
         return [
             ['7033662200', true],
             ['(70)33662200', false],
