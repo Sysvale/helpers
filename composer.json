@@ -1,5 +1,5 @@
 {
-    "version": "1.2",
+    "version": "2.0",
     "name": "sysvale/helpers",
     "description": "Helper function in PHP",
     "type": "library",
