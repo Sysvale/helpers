@@ -1,6 +1,7 @@
 <?php
 
 namespace Sysvale;
+
 use Sysvale\Helpers\Mask;
 use Sysvale\Helpers\Validate;
 
@@ -479,7 +480,7 @@ class Helpers
      * @param string $cnpj
      * @return bool
      */
-    function validateCNPJ($cnpj)
+    public function validateCNPJ($cnpj)
     {
         return Validate::isValidCnpj($cnpj);
     }
@@ -488,7 +489,7 @@ class Helpers
      * @param string $phone
      * @return bool
      */
-    function validatePhone($phone)
+    public function validatePhone($phone)
     {
         return Validate::isValidPhone($phone);
     }
@@ -497,7 +498,7 @@ class Helpers
      * @param string $phone
      * @return bool
      */
-    function validateResidentialPhone($phone)
+    public function validateResidentialPhone($phone)
     {
         return Validate::isValidResidentialPhone($phone);
     }
@@ -506,7 +507,7 @@ class Helpers
      * @param string $phone
      * @return bool
      */
-    function validateMobilePhone($phone)
+    public function validateMobilePhone($phone)
     {
         return Validate::isValidMobilePhone($phone);
     }
