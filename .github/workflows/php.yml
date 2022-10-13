@@ -1,4 +1,4 @@
-name: Monolog Handler CI
+name: Run tests
 
 on:
   push:
@@ -35,5 +35,5 @@ jobs:
     - name: Install dependencies
       uses: php-actions/composer@v2
 
-    - name: Test with phpunit
-      run: ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover && php vendor/bin/ocular code-coverage:upload --format=php-clover coverage.clover
+    - name: Run php unit tests
+      run: ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
