@@ -2,6 +2,7 @@
 
 namespace Sysvale;
 
+use Sysvale\Helpers\Dates;
 use Sysvale\Helpers\Mask;
 use Sysvale\Helpers\Validate;
 
@@ -170,23 +171,7 @@ class Helpers
      */
     public static function ptDate2IsoDate($date)
     {
-        $fDate = explode('/', $date);
-
-        if (count($fDate) < 3) {
-            return null;
-        } else {
-            if (strlen($fDate[2])<4) {
-                if (intval($fDate[2])>30) {
-                    $fDate[2]='19'.$fDate[2];
-                } else {
-                    $fDate[2]='20'.$fDate[2];
-                }
-            }
-
-            $fDate = (new \DateTime($fDate[2] . '-' . $fDate[1] . '-' . $fDate[0]))->format('Y-m-d');
-        }
-
-        return $fDate;
+        return Dates::parsePtDateToIsoDateFormat($date);
     }
 
     /**
@@ -436,24 +421,7 @@ class Helpers
      */
     public static function monthPt($value)
     {
-        $months = [
-            1 => 'Janeiro',
-            2 => 'Fevereiro',
-            3 => 'Março',
-            4 => 'Abril',
-            5 => 'Maio',
-            6 => 'Junho',
-            7 => 'Julho',
-            8 => 'Agosto',
-            9 => 'Setembro',
-            10 => 'Outubro',
-            11 => 'Novembro',
-            12 => 'Dezembro',
-        ];
-
-        $value = (int) $value;
-
-        return 1 <= $value && $value <= 12 ? $months[$value] : '';
+        return Dates::getMonthNamePtBr($value);
     }
 
     /**
@@ -518,17 +486,7 @@ class Helpers
      */
     public static function weekDay($week_day_number)
     {
-        $days = [
-            1 => "Segunda-feira",
-            2 => "Terça-feira",
-            3 => "Quarta-feira",
-            4 => "Quinta-feira",
-            5 => "Sexta-feira",
-            6 => "Sábado",
-            7 => "Domingo",
-        ];
-
-        return $days[$week_day_number];
+        return Dates::getWeekDayNamePtBr($week_day_number);
     }
 
     /**
