@@ -4,8 +4,8 @@
     "description": "Helper function in PHP",
     "type": "library",
     "require-dev": {
-        "squizlabs/php_codesniffer": "^3.5.",
-        "phpunit/phpunit": "^8.4",
+        "squizlabs/php_codesniffer": "^3.7.",
+        "phpunit/phpunit": "^9.5",
         "php": ">=7.4",
         "fzaninotto/faker": "^1.9"
     },

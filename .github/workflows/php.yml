@@ -1,0 +1,39 @@
+name: Run tests
+
+on:
+  push:
+    branches:
+      - master
+      - release/*
+  pull_request:
+    branches:
+      - master
+    path-ignore:
+      - 'docs/**'
+      - '*.md'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-20.04
+
+    container: php:8.0-cli-buster
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Cache composer dependencies
+      uses: actions/cache@v2
+      env:
+        cache-name: cache-composer
+      with:
+        path: ~/vendor
+        key: ${{ env.cache-name }}
+        restore-keys: |
+          ${{ env.cache-name }}-
+
+    - name: Install dependencies
+      uses: php-actions/composer@v2
+
+    - name: Run php unit tests
+      run: ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
