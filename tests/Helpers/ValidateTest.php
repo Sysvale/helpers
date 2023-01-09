@@ -140,4 +140,31 @@ class ValidateTest extends TestCase
             ['', false],
         ];
     }
+
+    /**
+     * @dataProvider cnsProvider
+     */
+    public function testValidCns($value, $expected_result)
+    {
+        $isValid = Validate::isValidCns($value);
+
+        $this->assertSame($expected_result, $isValid);
+    }
+
+    public function cnsProvider()
+    {
+        return [
+            ['929086483480003', true],
+            ['191949203510003', true],
+            ['229421127850005', true],
+            ['796368354370018', true],
+            ['796 3683 5437 0018', true],
+            ['796 3683 54370018', true],
+            ['7963683 54370018', true],
+            ['696368354370018', false],
+            ['7963683543700120', false],
+            ['', false],
+            [null, false],
+        ];
+    }
 }
