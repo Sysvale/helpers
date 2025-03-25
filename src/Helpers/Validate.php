@@ -206,4 +206,22 @@ class Validate
         return $resto == 0;
     }
 
+    public static function isValidPisPasep(string $value): bool
+    {
+        $number = preg_replace('/\D/', '', $value);
+
+        if (strlen($number) !== 11 || preg_match('/^(\d)\1{10}$/', $number)) {
+            return false;
+        }
+
+        $digits = str_split($number);
+        $weights = [3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+        $sum = array_sum(array_map(fn($d, $w) => $d * $w, array_slice($digits, 0, 10), $weights));
+
+        $calculated_verification_digit =  ($sum % 11) < 2 ? 0 : (11 - $sum % 11);
+
+        $given_verification_digit = (int) $digits[10];
+
+        return $given_verification_digit === $calculated_verification_digit;
+    }
 }
