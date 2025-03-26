@@ -167,4 +167,29 @@ class ValidateTest extends TestCase
             [null, false],
         ];
     }
+
+    /** 
+     * @dataProvider pisPasepProvider 
+     * */ 
+    public function testValidatePisPasep(string $value, bool $is_valid): void
+    {
+        $validation = Validate::isValidPisPasep($value);
+
+        $this->assertSame($is_valid, $validation);
+    }
+
+    public static function pisPasepProvider(): array
+    {
+        return [
+            ['12345678900', true],
+            ['14843463732', true],
+            ['37275831654', true],
+            ['58757814249', true],
+            ['65255328642', true],
+            ['81816214189', true],
+            ['1234567890', false],
+            ['37275831655', false],
+            ['372758316555', false],
+        ];
+    }
 }
