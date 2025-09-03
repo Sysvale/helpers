@@ -27,6 +27,15 @@ class Helpers
     }
 
     /**
+     * @param string $value
+     * @return string|null
+     */
+    public static function maskCns($value)
+    {
+        return Mask::cns($value);
+    }
+
+    /**
      * @param string  $value
      * @return string|string[]|null
      */
