@@ -34,6 +34,19 @@ class Mask
     }
 
     /**
+    * @param string $value
+    * @return string|null
+    */
+    public static function cns($value)
+    {
+        $value = preg_replace('/\D/', '', $value);
+        if (strlen($value) < 15) {
+            return null;
+        }
+        return vsprintf("%s%s%s %s%s%s%s %s%s%s%s %s%s%s%s", str_split($value));
+    }
+
+    /**
     * @param string  $value
     * @return string|string[]|null
     */
