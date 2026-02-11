@@ -151,6 +151,28 @@ class HelpersTest extends TestCase
         $this->assertEquals("Dezembro", Helpers::monthPt(12));
     }
 
+    public function testMonthPtAbbr()
+    {
+        $this->assertEquals("Jan", Helpers::monthPtAbbr(1));
+        $this->assertEquals("Fev", Helpers::monthPtAbbr(2));
+        $this->assertEquals("Mar", Helpers::monthPtAbbr(3));
+        $this->assertEquals("Abr", Helpers::monthPtAbbr(4));
+        $this->assertEquals("Mai", Helpers::monthPtAbbr(5));
+        $this->assertEquals("Jun", Helpers::monthPtAbbr(6));
+        $this->assertEquals("Jul", Helpers::monthPtAbbr(7));
+        $this->assertEquals("Ago", Helpers::monthPtAbbr(8));
+        $this->assertEquals("Set", Helpers::monthPtAbbr(9));
+        $this->assertEquals("Out", Helpers::monthPtAbbr(10));
+        $this->assertEquals("Nov", Helpers::monthPtAbbr(11));
+        $this->assertEquals("Dez", Helpers::monthPtAbbr(12));
+    }
+
+    public function testMonthPtAbbrReturnsNullForInvalidInput()
+    {
+        $this->assertNull(Helpers::monthPtAbbr(0));
+        $this->assertNull(Helpers::monthPtAbbr(13));
+    }
+
     public function testUnMaskCpf()
     {
         $actual = "77298408631";

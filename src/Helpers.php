@@ -434,6 +434,15 @@ class Helpers
     }
 
     /**
+     * @param int $value
+     * @return string|null
+     */
+    public static function monthPtAbbr($value)
+    {
+        return Dates::getMonthAbbrPtBr($value);
+    }
+
+    /**
      * @param string $str
      * @return string
      */

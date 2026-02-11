@@ -34,6 +34,29 @@ class DatesTest extends TestCase
         $this->assertEquals("Dezembro", Dates::getMonthNamePtBr(12));
     }
 
+    public function testGetMonthAbbrPtBrIsCorrect()
+    {
+        $this->assertEquals("Jan", Dates::getMonthAbbrPtBr(1));
+        $this->assertEquals("Fev", Dates::getMonthAbbrPtBr(2));
+        $this->assertEquals("Mar", Dates::getMonthAbbrPtBr(3));
+        $this->assertEquals("Abr", Dates::getMonthAbbrPtBr(4));
+        $this->assertEquals("Mai", Dates::getMonthAbbrPtBr(5));
+        $this->assertEquals("Jun", Dates::getMonthAbbrPtBr(6));
+        $this->assertEquals("Jul", Dates::getMonthAbbrPtBr(7));
+        $this->assertEquals("Ago", Dates::getMonthAbbrPtBr(8));
+        $this->assertEquals("Set", Dates::getMonthAbbrPtBr(9));
+        $this->assertEquals("Out", Dates::getMonthAbbrPtBr(10));
+        $this->assertEquals("Nov", Dates::getMonthAbbrPtBr(11));
+        $this->assertEquals("Dez", Dates::getMonthAbbrPtBr(12));
+    }
+
+    public function testGetMonthAbbrPtBrReturnsNullForInvalidInput()
+    {
+        $this->assertNull(Dates::getMonthAbbrPtBr(0));
+        $this->assertNull(Dates::getMonthAbbrPtBr(13));
+        $this->assertNull(Dates::getMonthAbbrPtBr(-1));
+    }
+
     public function testPtDate2IsoDate()
     {
         $date = '01/02/2003';
