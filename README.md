@@ -54,7 +54,7 @@ composer require sysvale/helpers
 
 #### maskBank
 ```php
-use Sysvale/Helpers;
+use Sysvale\Helpers;
 
 $bankNumber = 12345;
 
@@ -65,7 +65,7 @@ $maskedBank = Helpers::maskBank($bankNumber);
 
 #### trimpp
 ```php
-use Sysvale/Helpers;
+use Sysvale\Helpers;
 
 $text = " Text \t \n "; //String with spaces and special caracter;
 
@@ -76,7 +76,7 @@ $text = Helpers::trimpp($text);
 
 #### urlNoCache
 ```php
-use Sysvale/Helpers;
+use Sysvale\Helpers;
 
 $url = 'http://url.com.br';
 
@@ -107,7 +107,7 @@ To use the class import as in the example:
 #### isValidCpf
 
 ```php
-use Sysvale/Helpers/Validate;
+use Sysvale\Helpers\Validate;
 
 $value = '334.734.750-17';
 
@@ -119,7 +119,7 @@ $isValid = Validate::isValidCpf($value);
 #### isValidCnpj
 
 ```php
-use Sysvale/Helpers/Validate;
+use Sysvale\Helpers\Validate;
 
 $value = '56.396.710/0001-37';
 
@@ -131,7 +131,7 @@ $isValid = Validate::isValidCnpj($value);
 #### isValidPhone
 
 ```php
-use Sysvale/Helpers/Validate;
+use Sysvale\Helpers\Validate;
 
 $value = '79988001010';
 
@@ -143,7 +143,7 @@ $isValid = Validate::isValidPhone($value);
 #### isValidResidentialPhone
 
 ```php
-use Sysvale/Helpers/Validate;
+use Sysvale\Helpers\Validate;
 
 $value = '7033662200';
 
@@ -155,7 +155,7 @@ $isValid = Validate::isValidResidentialPhone($value);
 #### isValidMobilePhone
 
 ```php
-use Sysvale/Helpers/Validate;
+use Sysvale\Helpers\Validate;
 
 $value = '70993662200';
 

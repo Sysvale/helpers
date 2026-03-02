@@ -131,16 +131,16 @@ class Validate
         $first = (int) $cns[0];
 
         if (in_array($first, [5, 7, 8, 9])) {
-            return Validate::validate_cns_tmp($cns);
+            return Validate::validateCnsTmp($cns);
         }
 
         if (in_array($first, [1, 2])) {
-            return Validate::validate_cns_fixed($cns);
+            return Validate::validateCnsFixed($cns);
         }
         return false;
     }
 
-    private static function validate_cns_fixed($cns)
+    private static function validateCnsFixed($cns)
     {
         $pis = substr($cns, 0, 11);
 
@@ -184,7 +184,7 @@ class Validate
         return $cns === $resultado;
     }
 
-    private static function validate_cns_tmp($cns)
+    private static function validateCnsTmp($cns)
     {
         $soma = (((substr($cns, 0, 1)) * 15) +
             ((substr($cns, 1, 1)) * 14) +
