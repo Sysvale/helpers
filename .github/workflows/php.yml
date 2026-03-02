@@ -8,32 +8,39 @@ on:
   pull_request:
     branches:
       - master
-    path-ignore:
+    paths-ignore:
       - 'docs/**'
       - '*.md'
 
 jobs:
   build:
-
-    runs-on: ubuntu-20.04
-
-    container: php:8.0-cli-buster
+    runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-    - name: Cache composer dependencies
-      uses: actions/cache@v3
-      env:
-        cache-name: cache-composer
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
       with:
-        path: ~/vendor
-        key: ${{ env.cache-name }}
+        php-version: '8.0'
+        coverage: xdebug
+
+    - name: Get Composer Cache Directory
+      id: composer-cache
+      run: |
+        echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+    - name: Cache dependencies
+      uses: actions/cache@v4
+      with:
+        path: ${{ steps.composer-cache.outputs.dir }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
-          ${{ env.cache-name }}-
+          ${{ runner.os }}-composer-
 
     - name: Install dependencies
-      uses: php-actions/composer@v2
+      run: composer install --prefer-dist --no-progress
 
     - name: Run php unit tests
       run: ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
