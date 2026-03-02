@@ -10,7 +10,8 @@
         "fzaninotto/faker": "^1.9"
     },
     "require": {
-        "php": ">=7.4"
+        "php": ">=7.4",
+        "nesbot/carbon": "^2.66"
     },
     "license": "MIT",
     "authors": [
