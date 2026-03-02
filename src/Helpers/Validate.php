@@ -130,7 +130,7 @@ class Validate
 
         $first = (int) $cns[0];
 
-        if (in_array($first, [7, 8, 9])) {
+        if (in_array($first, [5, 7, 8, 9])) {
             return Validate::validate_cns_tmp($cns);
         }
 
