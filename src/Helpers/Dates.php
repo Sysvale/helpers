@@ -50,6 +50,32 @@ class Dates
     }
 
     /**
+     * @param int $value
+     * @return string|null
+     */
+    public static function getMonthAbbrPtBr($value)
+    {
+        $months = [
+            1 => 'Jan',
+            2 => 'Fev',
+            3 => 'Mar',
+            4 => 'Abr',
+            5 => 'Mai',
+            6 => 'Jun',
+            7 => 'Jul',
+            8 => 'Ago',
+            9 => 'Set',
+            10 => 'Out',
+            11 => 'Nov',
+            12 => 'Dez',
+        ];
+
+        $value = (int) $value;
+
+        return 1 <= $value && $value <= 12 ? $months[$value] : null;
+    }
+
+    /**
      * @param string $date
      * @return array|string
      * @throws \Exception

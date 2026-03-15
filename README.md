@@ -40,6 +40,7 @@ composer require sysvale/helpers
  * removeAccents
  * compareVersion
  * monthPt
+ * monthPtAbbr
  * removeCrassLetters
  * validateCpf
  * validateCNPJ
@@ -149,6 +150,17 @@ $url = 'http://url.com.br';
 $url = Helpers::urlNoCache($url);
 
 // $url will be http://url.com.br?1570588480
+```
+
+#### monthPtAbbr
+```php
+use Sysvale\Helpers;
+
+$month = 1;
+
+$abbr = Helpers::monthPtAbbr($month);
+
+// $abbr will be Jan
 ```
 
 ## Validate class
