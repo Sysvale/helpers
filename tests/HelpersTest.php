@@ -172,6 +172,7 @@ class HelpersTest extends TestCase
         $right = '11222333444455';
 
         $this->assertEquals(Helpers::maskCnpj($right), '11.222.333/4444-55');
+        $this->assertEquals(Helpers::maskCnpj('GC85CXG8000189'), 'GC.85C.XG8/0001-89');
         $this->assertNull(Helpers::maskCnpj($wrong));
     }
 

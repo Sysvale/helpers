@@ -50,34 +50,35 @@ class Validate
      */
     public static function isValidCnpj($cnpj)
     {
-        $cnpj = preg_replace('/[^0-9]/', '', (string) $cnpj);
+        $cnpj = preg_replace('/[^A-Za-z0-9]/', '', (string) $cnpj);
+        $cnpj = strtoupper($cnpj);
 
-        if (strlen($cnpj) != 14) {
+        if (!preg_match('/^[A-Z0-9]{12}[0-9]{2}$/', $cnpj)) {
             return false;
         }
 
-        if (preg_match('/(\d)\1{13}/', $cnpj)) {
+        if (preg_match('/(.)\1{13}/', $cnpj)) {
             return false;
         }
 
         for ($i = 0, $j = 5, $soma = 0; $i < 12; $i++) {
-            $soma += $cnpj[$i] * $j;
+            $soma += (ord($cnpj[$i]) - 48) * $j;
             $j = ($j == 2) ? 9 : $j - 1;
         }
 
         $resto = $soma % 11;
 
-        if ($cnpj[12] != ($resto < 2 ? 0 : 11 - $resto)) {
+        if ((int) $cnpj[12] != ($resto < 2 ? 0 : 11 - $resto)) {
             return false;
         }
 
         for ($i = 0, $j = 6, $soma = 0; $i < 13; $i++) {
-            $soma += $cnpj[$i] * $j;
+            $soma += (ord($cnpj[$i]) - 48) * $j;
             $j = ($j == 2) ? 9 : $j - 1;
         }
 
         $resto = $soma % 11;
-        return $cnpj[13] == ($resto < 2 ? 0 : 11 - $resto);
+        return (int) $cnpj[13] == ($resto < 2 ? 0 : 11 - $resto);
     }
 
     /**
