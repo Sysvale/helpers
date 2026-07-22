@@ -109,9 +109,10 @@ class Mask
     */
     public static function cnpj($value)
     {
-        $value = preg_replace('/\D/', '', $value);
+        $value = preg_replace('/[^A-Za-z0-9]/', '', (string) $value);
+        $value = strtoupper($value);
 
-        if (strlen($value) == 14) {
+        if (preg_match('/^[A-Z0-9]{12}[0-9]{2}$/', $value)) {
             return vsprintf("%s%s.%s%s%s.%s%s%s/%s%s%s%s-%s%s", str_split($value));
         }
 

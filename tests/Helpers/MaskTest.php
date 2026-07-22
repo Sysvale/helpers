@@ -20,10 +20,14 @@ class MaskTest extends TestCase
     public function testeMaskCnpj()
     {
         $expected = '99.999.999/9999-99';
-
         $actual = Mask::cnpj('99999999999999');
-
         $this->assertEquals($expected, $actual);
+
+        $this->assertEquals('GC.85C.XG8/0001-89', Mask::cnpj('GC85CXG8000189'));
+        $this->assertEquals('3N.XJ6.DX8/0001-70', Mask::cnpj('3NXJ6DX8000170'));
+        $this->assertEquals('LL.APR.PG5/0001-06', Mask::cnpj('LLAPRPG5000106'));
+        $this->assertEquals('H6.HT4.V25/0001-85', Mask::cnpj('H6HT4V25000185'));
+        $this->assertEquals('G5.6R6.P3L/0001-45', Mask::cnpj('G56R6P3L000145'));
     }
 
     public function testMaskCep()
