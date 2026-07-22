@@ -50,8 +50,13 @@ class Validate
      */
     public static function isValidCnpj($cnpj)
     {
-        $cnpj = preg_replace('/[^A-Za-z0-9]/', '', (string) $cnpj);
-        $cnpj = strtoupper($cnpj);
+        $cnpj = (string) $cnpj;
+
+        if (preg_match('/[a-z]/', $cnpj)) {
+            return false;
+        }
+
+        $cnpj = preg_replace('/[^A-Z0-9]/', '', $cnpj);
 
         if (!preg_match('/^[A-Z0-9]{12}[0-9]{2}$/', $cnpj)) {
             return false;

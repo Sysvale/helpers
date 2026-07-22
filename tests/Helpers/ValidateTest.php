@@ -66,6 +66,8 @@ class ValidateTest extends TestCase
             ['GC85CXG8000189', true],
             ['GC.85C.XG8/0001-80', false],
             ['GC.85C.XG8/0001-AB', false],
+            ['gc.85c.xg8/0001-89', false],
+            ['gc85cxg8000189', false],
             ['1452818100013', false],
             ['14528181', false],
             ['145281810001383', false],

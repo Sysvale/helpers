@@ -28,6 +28,7 @@ class MaskTest extends TestCase
         $this->assertEquals('LL.APR.PG5/0001-06', Mask::cnpj('LLAPRPG5000106'));
         $this->assertEquals('H6.HT4.V25/0001-85', Mask::cnpj('H6HT4V25000185'));
         $this->assertEquals('G5.6R6.P3L/0001-45', Mask::cnpj('G56R6P3L000145'));
+        $this->assertNull(Mask::cnpj('gc85cxg8000189'));
     }
 
     public function testMaskCep()
